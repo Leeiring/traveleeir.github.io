@@ -1,69 +1,254 @@
-body{
-    font-family: 'Times New Roman', Times, serif, italic;
-    font-style: italic;
-    font-size: 14px;
-    padding: 0px;
-    background-color: #f1f1f1;
-  }
-
-  .grid-container {
-    display: grid;
-    grid-template-columns: 20% auto;
-    gap: 5px;
-    background-color: f1f1f1;
-    padding: 0px;
-  } 
-
-  .grid-container > div {
-    background-color: #f1f1f1;
-    color: #000;
-    padding: 10px;
-    text-align: left;
-  }
-
-  div.cursors div {
-    position:absolute;
-    top: 300px;
-    left: 300px;
-    width: 5px;
-    height: 5px;
-    background-color: blue;
-    
-    z-index: 10000;
-    pointer-events:none;
-    transform: translate(-50%, -50%);
-  }
-
-  div.cursors div span{
-    position: absolute;
-    top: 0px;
-    right: 40px;
-    width: 300px;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
-
-  div.cursors div span.visible {
-    opacity: 1;
-    color: #f1f1f1;
-    background-color: blue;
-    max-width: 500px;
-  }
-
-/* Slideshow container */
-
-div.scroll-container {
-  background-color: #f1f1f1;
-  overflow: auto;
-  white-space: nowrap;
-  position: relative;
-  margin: 0px;
-
-  width: 100%;
+/* reset defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
 
-div.scroll-container img {
-  padding: 0px;
+/* css variables */
+:root {
+  --desktop-color: #e8e8e8;
+  --desktop-text-color: #ffffff;
+
+  --title-bar-color: #1126F9;
+  --title-bar-text-color: #e8e8e8;
+  --title-bar-highlight-color: #1126F9;
+  --title-bar-height: 32px;
+
+  --pane-content-background-color: #e8e8e8;
+
+  --pane-default-width: 20px;
+  --pane-default-height: 20px;
+  --pane-border-radius: 1px;
+
+  /*side bar width*/
+  --side-width:200px;
+}
+
+
+html, body{
+  background-color: var(--desktop-color);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: scroll;
+  font-size: 16px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 42px;
+  font-style: italic;
+  font-weight: 500;
+  color: black;
+  padding: 32px;
+  margin-left: 2%;
+}
+
+p {
+  font-size: 1em; /* 1 * 16 = 16px */
+  padding-left: 5.5%;
+  padding-right: 5%;
+  padding-bottom: 1%;
+  font-weight: 400;
+  font-family: "Times New Roman", Times, serif;
+}
+
+h2 {
+  font-family: "Times New Roman", Times, serif;
+  color:black;
+  padding: 32px;
+  font-size: 1em;
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.page_wrapper{
+  position: fixed;
   width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px; 
+  overflow-y: scroll;
+}
+
+.summary_container {
+  height: 40%;
+}
+
+.project_container {
+  background-color: var(--desktop-color);
+}
+
+.section{
+  display: grid;
+  grid-template-columns: auto auto ;
+  gap: 5px;
+  width: auto;
   height: auto;
+  overflow-y: hidden;
+  margin-top: 10px;
+  border-radius: var(--pane-border-radius); 
+  border: 2px solid #1126F9; 
 }
+
+.section div {
+  align-content: center;
+}
+
+.both_col{
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  
+}
+
+/* Mobile format ------------------------------------------------------------- */
+@media screen and (max-width: 600px) {
+  .sidenav {
+    display: none; /* Removes side nav*/
+  }
+
+ .page_wrapper{
+   margin-left: 4%;
+   margin-right: 4%;
+ }
+
+ 
+}
+
+/* Web format ------------------------------------------------------------- */
+@media screen and (min-width: 600px) {
+
+ .page_wrapper{ /* Makes space for the side bar when in not mobile */
+   margin-left: var(--side-width);
+ }
+
+}
+
+
+/*Side menu ----------------------------------------------------------------*/
+.sidenav  {
+  font-family: "Times New Roman", Times, serif;
+  height: 100%;
+  width: var(--side-width);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: var(--desktop-color);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  font-family: "Times New Roman", Times, serif;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  display: block;
+  border: none;
+  background: none;
+  width:100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #dddddd;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+a.active, .dropdown-btn.active {
+  background-color: blue;
+  color: white;
+  font-style: italic;
+}
+
+.sidenav a:hover:not(.active), .dropdown-btn:hover {
+  background-color: #656565;
+  color: white;
+}
+/*--------------------------------------------------------------------------------------------------------*/
+
+
+
+.pane { /* the about window ----------------------------------------------------------------  */
+  position: absolute;
+  width: var(--pane-default-width); /* when corner dragged width and height are changed */
+  height: var(--pane-default-height);
+  z-index: 2;
+
+  display: grid;
+  grid-template-rows: var(--title-bar-height) 1fr;
+
+  border-radius: var(--pane-border-radius); 
+  border: 2px solid #1126F9; 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+
+  overflow: hidden;
+
+  min-width: 160px;
+  min-height: 160px;
+}
+
+.pane .title {
+  cursor: move;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  background-color: var(--title-bar-color);
+}
+
+.pane p{
+  color: var(--desktop-color);
+  background-color: var(--title-bar-color);
+}
+
+.pane .mask{
+  clip-path: inset(0% 0% 0% 0%);
+}
+
+
+
+
+
+
+/* add a corner in bottom right */
+.pane .corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  z-index: 100;
+
+  /* north west to south east */
+  cursor: nwse-resize;
+
+  /* background-color: red; */
+}
+
+.pane.is-dragging .title {
+  background-color: var(--title-bar-highlight-color);
+}
+
