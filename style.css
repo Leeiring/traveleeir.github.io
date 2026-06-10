@@ -1,240 +1,319 @@
-.body {
-  font-family: 'Times New Roman', Times, serif;
-  padding: 0px;
-  background-color: #f1f1f1;
+/* reset defaults */
+* {
+  box-sizing: border-box;
 }
 
-.button {
-  font-family: 'Times New Roman', Times, serif;
-  
-}
+/* css variables */
+:root {
+/* colours */
+  --blue:#1126F9;
+  --red:#ee1212;
+  --lightgrey:#e8e8e8; 
+  --darkgrey:#242424; 
+  --desktop-color: #e8e8e8;
+  --desktop-text-color: #ffffff;
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+  --title-bar-color: var(--blue);
+  --title-bar-text-color: var(--lightgrey);
+  --title-bar-highlight-color: var(--blue);
+  --title-bar-height: 32px;
 
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
+  --pane-content-background-color: #e8e8e8;
 
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+  /*side bar width*/
+  --side-width:200px;
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+  /* pane dimentions*/
+  --pane-default-width: 100%; 
+  --pane-default-height: 40%;
+  --pane-border-radius: 1px;
+
+   /* main img dimentions*/
+   --mimg-width: 100%;
+   --ming-height: auto;
+
+  /* scrolling elements*/
+  --topscroll: element.scrollTop ;
+
 }
 
 
-/* Style the top navigation bar */
-.topnav {
-    font-family: 'Times New Roman', Times, serif, italic;
-    overflow: hidden;
-    background-color: #f3efef;
-    position: fixed;/* fix nav bar to top of page */
-    top: 0;
-    width: 100%;
-  }
-  
-  /* Style the topnav links */
-  .topnav a {
-    float: left;
-    display: block;
-    color: #2a15e6;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  /* Change color on hover */
-  .topnav a:hover {
-    background-color: #e7e7ee;
-    color: black;
-  }
 
-  /* Style the nav buttons */
-  .navBtn {
-    font-family: 'Times New Roman', Times, serif, italic;
-    float: left;
-    display: block;
-    color: #2a15e6;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    border: 0px;
-  }
-  
-  /* Change color on hover */
-  .navBtn:hover {
-    background-color: #e7e7ee;
-    color: black;
-  }
-
-
-
-
-
-
-
-
-/*Project section*/
-.container {
-  margin-top: 20px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 2px;
-} 
-
-.project {
-  float: left;
-  background-color: #ffffff;
-  color: #000;
-  padding: 0px;
-  font-size: 14px;
-  height: 300px;
-  width: auto;
-  position: relative;
-  margin: 2px;
-  display: none;
-}
-
-.ptext {
-  display: flex;
-  position: absolute;
-  justify-content: flex-start;
-  align-items: normal;
-  text-align: left;
-  top: 0px;
-  left: 10px;
-}
-
-/* Project pixel hover effect */
-  
-.container2 {
-  width: 100%;
+html, body{
+  background-color: var(--lightgrey);
+  margin: 0;
+  padding: 0;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} 
+  overflow: scroll;
+  background-image: url('bg_imgs/MAINbg.png');
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+   
  
-.img_container{
+
+
+/* Flex for mobile*/
+
+.positioning{
   position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+}
+
+
+/* Mobile format*/
+@media screen and (max-width: 600px) {
+  .sidenav {
+    display: none; /* Removes side nav*/
   }
-  
-.preimg{
-  position: absolute;
-  width: auto;
-  height: 100%;
-}
-  
-.img_container .img_overlay{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-  
-.img_blocks {
-  position:absolute;
-  width: 100%;
-  height: 100%;
-  display:flex;
-  flex-flow: row wrap;
-  align-content: flex-start;
-  justify-content: flex-start;
-}
-  
-.block {
-  width: 10%;
-  height: 10%;
-  opacity: 1;
-  mix-blend-mode: normal;
-  transition: opacity 0.3 ease-in;
-  background-color: #ffffff;
-}
-  
-.block.active{
-  opacity:0;
-}
-
-/* show and hide project style depending on filter settings */
-.show {
-  display: block;
-}
-
-.hide {
-  display:none;
-}
-
-
-
-
-
-
-
-/* Style the buttons */
-.filters {
-    overflow: hidden;
-    background-color: #f3efef;
-    width: 100%;
-    padding: 10px;
+  .container{
     display: grid;
-    grid-template-columns: 50px 50px 50px 50px auto;
+    height: 100%;
+    flex-direction: column;
+    position: relative;
+    grid-template-columns: auto auto ;
+    
+  }
+
+  .positioning{
+    margin-bottom: 170px;
+  }
+
+  .pane{ /* Fixed pane size*/
+    grid-template-rows: var(--title-bar-height) 1fr;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-width: 160px;
+    min-height: 160px;
+    
+    
+  }
+
+  .pane .mask img{     /* fixed position doesnt allow moving when scrolling */
+   width: 90%;
+   height: auto;
+   bottom: 0%;
+   left: 50%;
+   transform: translate(-50%, 0%);
+  }
+
+  body { /* main bg image */
+   background-size: 90%, auto;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position-x: center;
+   background-position-y: bottom;
+  }
 }
 
-.btn {
-  font-family: 'Times New Roman', Times, serif, italic;
-  border: none;
-  outline: none;
-  padding: 12px 16px;
-  background-color: #f1f1f1;
-  color:#2a15e6;
-  cursor: pointer;
+/* Web format */
+@media screen and (min-width: 600px) {
+  /* Makes space for the side bar when in not mobile */
+  .intro{
+    margin-left: var(--side-width);
+  }
+
+  .container{
+    margin-left: var(--side-width);
+    grid-template-columns: auto auto auto auto;
+    position: relative;
+  }
+
+  .positioning{
+    margin-bottom: 170px;
+  }
+
+  .pane{
+    grid-template-rows: var(--title-bar-height) 1fr;
+    width: var(--pane-default-width); /* when corner dragged width and height are changed */
+    height: var(--pane-default-height);
+    min-width: 160px;
+    min-height: 160px;
+    grid-row: 1;
+    position: absolute;
+  }
+
+  .pane .mask img{     /* fixed position doesnt allow moving when scrolling */
+  width: 50%;
+  height: auto;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
-.btn:hover {
-  background-color: #ccccd0;
+  body { /* main bg image */
+   background-size: 50%, auto;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position-x: center;
+   background-position-y: bottom;
+  }
+}
+
+
+
+
+
+h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 42px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+h2 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 200;
+}
+
+p {
+  font-size: 1em; /* 1 * 16 = 16px */
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+
+
+
+/*Side menu ----------------------------------------------------------------*/
+.sidenav  {
+  font-family: "Times New Roman", Times, serif;
+  height: 100%;
+  width: var(--side-width);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: var(--desktop-color);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  font-family: "Times New Roman", Times, serif;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 16px;
   color: black;
-}
-
-.btn:hover + .hide {
-  background-color: #ddd;
   display: block;
-  color: red;
+  border: none;
+  background: none;
+  width:100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
 }
 
-.btn.active {
-  background-color: #2a15e6;
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #dddddd;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+a.active, .dropdown-btn.active {
+  background-color: blue;
+  color: white;
+  font-style: italic;
+}
+
+.sidenav a:hover:not(.active), .dropdown-btn:hover {
+  background-color: #656565;
   color: white;
 }
+/*--------------------------------------------------------------------------------------------------------*/
 
+/*Intro*/
+.intro {
+  padding: 10px;
+  gap: 10px;  
+}
 
-  
+/*Project section*/
+.container { /* holds all project windows and positions them into rows of 4 */
+  height: var(--pane-default-height);
+  padding: 10px;
+  gap: 10px;  
+  position: relative;
+  display: grid;
+  z-index: 4;
+} 
 
+.pane { /* window pane container divs */
+  display: grid;
+  border-radius: var(--pane-border-radius); 
+  border: 2px solid #1126F9; 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  background-color: var(--desktop-color);
+  overflow: hidden;
+}
+
+.pane .title {
+  cursor: move;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  font-size: 16px;
+  background-color: var(--title-bar-color);
+  color: var(--title-bar-text-color);
+}
+
+.pane a {
+  padding: 4px;
+  color: var(--darkgrey);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.pane p {
+  z-index: -2;
+  color: var(--darkgrey);
+  background-color: transparent;
+  text-decoration: none;
+  padding-left: 2px;
+  padding-right: 2px;
+
+}
+
+a:active {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.pane .mask{ /* masking the area of the window to show image and text content*/
+  clip-path: inset(0% 0% 0% 0%);
+}
+
+/* has the img fixed position in the correct place!!!!!*/
+.pane .mask img{     /* fixed position doesnt allow moving when scrolling */
+  position: fixed;
+}
+
+/* add a corner in bottom right */
+.pane .corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+
+  /* north west to south east */
+  cursor: nwse-resize;
+
+  /* background-color: red;  indicate theres smth about the corner*/
+}
+
+.pane.is-dragging .title {
+  background-color: var(--title-bar-highlight-color);
+}
