@@ -43,6 +43,35 @@ panes.forEach((pane) => { //
     document.addEventListener('mouseup', mouseup)
   })
 
+   title.addEventListener('touchstart', (event) => { //dragging event mobile
+    pane.classList.add('is-dragging')
+
+    let l = pane.offsetLeft
+    let t = pane.offsetTop
+
+    let startX = event.pageX
+    let startY = event.pageY
+
+    const drag = (event) => {
+      event.preventDefault()
+
+      pane.style.left = l + (event.pageX - startX) + 'px'
+      pane.style.top = t + (event.pageY - startY) + 'px'
+    }
+
+    const touchend = () => {
+      pane.classList.remove('is-dragging')
+
+      document.removeEventListener('touchmove', drag)
+      document.removeEventListener('touchend', touchend)
+    }
+
+    document.addEventListener('touchmove', drag)
+    document.addEventListener('touchend', touchend)
+  })
+
+  ////////////
+
   corner.addEventListener('mousedown', (event) => { //drag = edit pane on mouse down end event on mouse up 
     let w = pane.clientWidth 
     let h = pane.clientHeight
