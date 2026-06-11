@@ -3,20 +3,22 @@ const panes = document.querySelectorAll('.pane')
 let z = 1
 
 panes.forEach((pane) => { //
-  const title = pane.querySelector('.title')
-  const corner = pane.querySelector('.corner')
+  const title = pane.querySelector('.title') //blue title section
+  const corner = pane.querySelector('.corner') //bottom right corner
 
-  pane.addEventListener('mousedown', () => {
+  pane.addEventListener('mousedown', () => { // move laast clicked pane to the front
     z = z + 1
     pane.style.zIndex = z
   })
 
-   pane.addEventListener('touchstart', () => { // move laast clicked pane to the front
+  pane.addEventListener('touchstart', () => { // move last tapped pane to the front
     z = z + 1
     pane.style.zIndex = z
   })
 
-  title.addEventListener('mousedown', (event) => {
+ 
+
+  title.addEventListener('mousedown', (event) => { //dragging event desktop
     pane.classList.add('is-dragging')
 
     let l = pane.offsetLeft
@@ -43,7 +45,8 @@ panes.forEach((pane) => { //
     document.addEventListener('mouseup', mouseup)
   })
 
-   title.addEventListener('touchstart', (event) => { //dragging event mobile
+
+  title.addEventListener('touchstart', (event) => { //dragging event mobile
     pane.classList.add('is-dragging')
 
     let l = pane.offsetLeft
@@ -70,8 +73,11 @@ panes.forEach((pane) => { //
     document.addEventListener('touchend', touchend)
   })
 
-  ////////////
 
+
+
+
+  //extending and shinking pane
   corner.addEventListener('mousedown', (event) => { //drag = edit pane on mouse down end event on mouse up 
     let w = pane.clientWidth 
     let h = pane.clientHeight
@@ -94,7 +100,34 @@ panes.forEach((pane) => { //
     document.addEventListener('mousemove', drag)
     document.addEventListener('mouseup', mouseup)
   })
+
+
+  //extending and shinking pane mobile
+  corner.addEventListener('touchstart', (event) => { //drag = edit pane on mouse down end event on mouse up 
+    let w = pane.clientWidth 
+    let h = pane.clientHeight
+
+    let startX = event.pageX
+    let startY = event.pageY
+
+    const drag = (event) => {
+      event.preventDefault()
+
+      pane.style.width = w + (event.pageX - startX) + 'px'
+      pane.style.height = h + (event.pageY - startY) + 'px'
+    }
+
+    const touchend = () => {
+      document.removeEventListener('touchmove', drag)
+      document.removeEventListener('touchend', touchend)
+    }
+
+    document.addEventListener('touchmove', drag)
+    document.addEventListener('touchend', touchend)
+  })
+
 })
+
 
 
 
@@ -113,3 +146,7 @@ for (i = 0; i < dropdown.length; i++) {
     }
   });
 }
+
+
+
+
