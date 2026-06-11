@@ -11,6 +11,11 @@ panes.forEach((pane) => { //
     pane.style.zIndex = z
   })
 
+   pane.addEventListener('touchstart', () => { // move laast clicked pane to the front
+    z = z + 1
+    pane.style.zIndex = z
+  })
+
   title.addEventListener('mousedown', (event) => {
     pane.classList.add('is-dragging')
 
