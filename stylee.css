@@ -62,7 +62,7 @@ html, body{
 
 
 /* Mobile format*/
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
   .sidenav {
     display: none; /* Removes side nav*/
   }
