@@ -34,6 +34,7 @@
 
   /* scrolling elements*/
   --topscroll: element.scrollTop ;
+  touch-action: none
 
 }
 
@@ -47,10 +48,10 @@ html, body{
   overflow: scroll;
   background-image: url('bg_imgs/MAINbg.png');
   font-family: "Times New Roman", Times, serif;
+  touch-action: none
 }
 
 
-   
  
 
 
@@ -62,7 +63,7 @@ html, body{
 
 
 /* Mobile format*/
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 600px) {
   .sidenav {
     display: none; /* Removes side nav*/
   }
@@ -86,8 +87,6 @@ html, body{
     height: 100%;
     min-width: 160px;
     min-height: 160px;
-    
-    
   }
 
   .pane .mask img{     /* fixed position doesnt allow moving when scrolling */
@@ -260,12 +259,17 @@ a.active, .dropdown-btn.active {
 
 .pane .title {
   cursor: move;
+  user-select: none;
+  touch-action: none;
   display: flex;
   align-items: center;
   justify-content: left;
   font-size: 16px;
   background-color: var(--title-bar-color);
   color: var(--title-bar-text-color);
+  /* prevent scrolling while touching a window in mobile*/
+  user-select: none;
+  touch-action: none;
 }
 
 .pane a {
@@ -302,6 +306,8 @@ a:active {
 
 /* add a corner in bottom right */
 .pane .corner {
+  user-select: none;
+  touch-action: none;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -312,6 +318,9 @@ a:active {
   cursor: nwse-resize;
 
   /* background-color: red;  indicate theres smth about the corner*/
+  /* prevent scrolling while touching a window in mobile*/
+  user-select: none;
+  touch-action: none;
 }
 
 .pane.is-dragging .title {
