@@ -217,6 +217,8 @@ a.active, .dropdown-btn.active {
   justify-content: left;
 
   background-color: var(--title-bar-color);
+  user-select: none;
+  touch-action: none;
 }
 
 .pane p{
