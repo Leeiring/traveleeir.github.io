@@ -22,6 +22,7 @@
 
   /*side bar width*/
   --side-width:200px;
+  touch-action: none
 }
 
 
@@ -33,6 +34,7 @@ html, body{
   overflow: scroll;
   font-size: 16px;
   font-family: "Times New Roman", Times, serif;
+  touch-action: none
 }
 
 h1 {
@@ -97,6 +99,8 @@ h2 {
 
 .section div {
   align-content: center;
+  max-width: 100%;
+  height: auto;
 }
 
 .both_col{
@@ -215,8 +219,8 @@ a.active, .dropdown-btn.active {
   display: flex;
   align-items: center;
   justify-content: left;
-
   background-color: var(--title-bar-color);
+  /* prevent scrolling while touching a window in mobile*/
   user-select: none;
   touch-action: none;
 }
@@ -248,6 +252,9 @@ a.active, .dropdown-btn.active {
   cursor: nwse-resize;
 
   /* background-color: red; */
+  /* prevent scrolling while touching a window in mobile*/
+  user-select: none;
+  touch-action: none;
 }
 
 .pane.is-dragging .title {
