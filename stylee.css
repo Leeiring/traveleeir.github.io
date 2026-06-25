@@ -63,7 +63,7 @@ html, body{
 
 
 /* Mobile format*/
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .sidenav {
     display: none; /* Removes side nav*/
   }
@@ -107,7 +107,7 @@ html, body{
 }
 
 /* Web format */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 800px) {
   /* Makes space for the side bar when in not mobile */
   .intro{
     margin-left: var(--side-width);
