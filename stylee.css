@@ -53,8 +53,6 @@ html, body{
 
 
  
-
-
 /* Flex for mobile*/
 
 .positioning{
@@ -70,9 +68,7 @@ html, body{
   .container{
     display: grid;
     height: 100%;
-    flex-direction: column;
-    position: relative;
-    grid-template-columns: auto auto ;
+    grid-template-columns: auto;
     
   }
 
@@ -83,14 +79,14 @@ html, body{
   .pane{ /* Fixed pane size*/
     grid-template-rows: var(--title-bar-height) 1fr;
     position: absolute;
-    width: 100%;
+    width: 90%;
     height: 100%;
     min-width: 160px;
     min-height: 160px;
   }
 
   .pane .mask img{     /* fixed position doesnt allow moving when scrolling */
-   width: 90%;
+   width: 100%;
    height: auto;
    bottom: 0%;
    left: 50%;
@@ -197,7 +193,7 @@ p {
   padding: 8px 16px;
   text-decoration: none;
   font-size: 16px;
-  color: black;
+  color: var(--darkgrey);
   display: block;
   border: none;
   background: none;
@@ -210,25 +206,20 @@ p {
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
   display: none;
-  background-color: #dddddd;
+  background-color: var(--desktop-text-color);
   padding-left: 8px;
 }
 
-/* Optional: Style the caret down icon */
-.fa-caret-down {
-  float: right;
-  padding-right: 8px;
-}
 
 a.active, .dropdown-btn.active {
-  background-color: blue;
-  color: white;
+  background-color: var(--blue);
+  color: var(--desktop-text-color);
   font-style: italic;
 }
 
 .sidenav a:hover:not(.active), .dropdown-btn:hover {
-  background-color: #656565;
-  color: white;
+  background-color: var(--red);
+  color: var(--desktop-text-color);
 }
 /*--------------------------------------------------------------------------------------------------------*/
 
@@ -326,3 +317,4 @@ a:active {
 .pane.is-dragging .title {
   background-color: var(--title-bar-highlight-color);
 }
+
