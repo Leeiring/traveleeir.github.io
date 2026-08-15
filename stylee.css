@@ -48,7 +48,6 @@ html, body{
   overflow: scroll;
   background-image: url('bg_imgs/MAINbg.png');
   font-family: "Times New Roman", Times, serif;
-  touch-action: none
 }
 
 
