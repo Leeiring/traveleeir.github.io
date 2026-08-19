@@ -1,11 +1,17 @@
 /* reset defaults */
 * {
   box-sizing: border-box;
-  margin: 0;
 }
 
 /* css variables */
 :root {
+  /* colours */
+  --blue:#1126F9;
+  --red:#ee1212;
+  --lightgrey:#e8e8e8; 
+  --darkgrey:#242424; 
+  --desktop-color: #e8e8e8;
+  --desktop-text-color: #ffffff;
   --desktop-color: #e8e8e8;
   --desktop-text-color: #ffffff;
 
@@ -22,7 +28,7 @@
 
   /*side bar width*/
   --side-width:200px;
-  touch-action: none
+  /*touch-action: none */
 }
 
 
@@ -34,7 +40,7 @@ html, body{
   overflow: scroll;
   font-size: 16px;
   font-family: "Times New Roman", Times, serif;
-  touch-action: none
+  /*touch-action: none*/
 }
 
 h1 {
@@ -85,54 +91,52 @@ h2 {
   background-color: var(--desktop-color);
 }
 
-.section{
-  display: grid;
-  grid-template-columns: auto auto ;
+.section{ /*boarder around img*/
   gap: 5px;
-  width: auto;
   height: auto;
+  width: 80%;
   overflow-y: hidden;
   margin-top: 10px;
   border-radius: var(--pane-border-radius); 
   border: 2px solid #1126F9; 
+  display: flex;
+  justify-content: center;
 }
 
-.section div {
-  align-content: center;
-  max-width: 100%;
+
+img, video { /*60% web 100% mobile*/  
   height: auto;
-}
-
-.both_col{
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  
 }
 
 /* Mobile format ------------------------------------------------------------- */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .sidenav {
     display: none; /* Removes side nav*/
   }
 
  .page_wrapper{
-   margin-left: 4%;
-   margin-right: 4%;
+   margin-left:0% ;
  }
 
- 
+ img, video{
+  max-width: 100%;
+ }
+
+ .section{  /* centres content */
+  margin-left: 10%;
+  margin-right: 10%;
+ }
 }
 
 /* Web format ------------------------------------------------------------- */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 700px) {
 
  .page_wrapper{ /* Makes space for the side bar when in not mobile */
    margin-left: var(--side-width);
+ }
+
+ img, video{
+  max-width: 60%;
  }
 
 }
